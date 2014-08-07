@@ -1,6 +1,7 @@
 package com.lunion.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,9 +20,11 @@ public class ReasonInfo implements Serializable {
     @GeneratedValue
     private Integer id;
 
+    @NotNull
     @Column(name = "loan_id")
     private Integer loan_id;
 
+    @NotNull
     @Column(name = "type")
     @Enumerated(EnumType.ORDINAL)
     private ReasonType type;
@@ -29,9 +32,11 @@ public class ReasonInfo implements Serializable {
     @Column(name = "remarks")
     private String remarks;
 
+    @NotNull
     @Column(name = "created")
     private Date created;
 
+    @NotNull
     @Column(name = "last_modified")
     private Date last_modified;
 

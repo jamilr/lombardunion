@@ -1,6 +1,8 @@
 package com.lunion.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,24 +21,32 @@ public class Loan implements Serializable {
     @GeneratedValue
     private Integer id;
 
+    @NotNull
     @Column(name = "person_id")
     private Integer person_id;
 
+    @NotNull
     @Column(name = "sum")
     private BigDecimal sum;
 
+    @NotNull
     @Column(name = "start_date")
     private Date start_date;
 
+    @NotNull
+    @Future
     @Column(name = "end_date")
     private Date end_date;
 
+    @NotNull
     @Column(name = "month_count")
     private Integer month_count;
 
+    @NotNull
     @Column(name = "created")
     private Date created;
 
+    @NotNull
     @Column(name = "last_modified")
     private Date last_modified;
 

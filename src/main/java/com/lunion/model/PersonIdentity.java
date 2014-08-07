@@ -1,6 +1,7 @@
 package com.lunion.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -21,22 +22,28 @@ public class PersonIdentity implements Serializable {
     @Column(name = "number")
     private String number;
 
+    @NotNull
     @Column(name = "issue_date")
     private Date issue_date;
 
+    @NotNull
     @Column(name = "expire_date")
     private Date expire_date;
 
+    @NotNull
     @Column(name = "issue_place")
     private String issue_place;
 
+    @NotNull
     @Lob
     @Column(name = "img")
     private byte[] img;
 
+    @NotNull
     @Column(name = "created")
     private Date created;
 
+    @NotNull
     @Column(name = "last_modified")
     private Date last_modified;
 

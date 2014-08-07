@@ -1,6 +1,8 @@
 package com.lunion.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,18 +21,25 @@ public class Person implements Serializable {
     @GeneratedValue
     private Integer id;
 
+    @NotNull
     @Column(name = "code")
     private String  code;
 
+    @NotNull
     @Column(name = "first_name")
     private String  firstName;
 
+    @NotNull
     @Column(name = "last_name")
     private String  lastName;
 
+    @NotNull
+    @Past
+    @Temporal(TemporalType.DATE)
     @Column(name = "date_of_birth")
     private Date    dateOfBirth;
 
+    @NotNull
     @Column(name = "person_identity_id")
     private Integer person_identity_id;
 
@@ -38,9 +47,11 @@ public class Person implements Serializable {
     @Column(name = "img")
     private byte[] img;
 
+    @NotNull
     @Column(name = "created")
     private Date created;
 
+    @NotNull
     @Column(name = "last_modified")
     private Date last_modified;
 

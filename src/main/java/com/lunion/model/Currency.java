@@ -1,5 +1,7 @@
 package com.lunion.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -18,9 +20,11 @@ public class Currency implements Serializable {
     @Column(name = "id")
     private Integer id;
 
+    @NotNull
     @Column(name = "name")
     private String name;
 
+    @NotNull
     @Column(name = "acronym")
     private String acronym;
 

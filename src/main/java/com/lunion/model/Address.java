@@ -1,5 +1,7 @@
 package com.lunion.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -18,27 +20,34 @@ public class Address implements Serializable {
     @GeneratedValue
     private Integer id;
 
+    @NotNull
     @Column(name = "addressline1")
     private String addressLine1;
 
     @Column(name = "addressline2")
     private String addressLine2;
 
+    @NotNull
     @Column(name = "post_code")
     private String postCode;
 
+    @NotNull
     @Column(name = "city")
     private String city;
 
+    @NotNull
     @Column(name = "province")
     private String province;
 
+    @NotNull
     @Column(name = "country")
     private String country;
 
+    @NotNull
     @Column(name = "created")
     private Date created;
 
+    @NotNull
     @Column(name = "last_modified")
     private Date last_modified;
 

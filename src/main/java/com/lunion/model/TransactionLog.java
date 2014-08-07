@@ -1,6 +1,7 @@
 package com.lunion.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,24 +20,31 @@ public class TransactionLog implements Serializable {
     @GeneratedValue
     private Integer id;
 
+    @NotNull
     @Column(name = "person_id")
     private Integer person_id;
 
+    @NotNull
     @Column(name = "loan_id")
     private Integer loan_id;
 
+    @NotNull
     @Column(name = "sum")
     private BigDecimal sum;
 
+    @NotNull
     @Column(name = "currency_id")
     private Integer currency_id;
 
+    @NotNull
     @Column(name = "when")
     private Date when;
 
+    @NotNull
     @Column(name = "created")
     private Date created;
 
+    @NotNull
     @Column(name = "last_modified")
     private Date last_modified;
 

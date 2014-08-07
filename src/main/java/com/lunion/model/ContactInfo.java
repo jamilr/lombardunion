@@ -1,5 +1,7 @@
 package com.lunion.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -24,21 +26,24 @@ public class ContactInfo implements Serializable {
     @Column(name = "current_passport")
     private Address current_address;
 
+    @NotNull
+    @Column(name = "mobile_phone")
+    private String mobile_phone;
+
     @Column(name = "home_phone")
     private String  home_phone;
 
     @Column(name = "work_phone")
     private String  work_phone;
 
-    @Column(name = "mobile_phone")
-    private String mobile_phone;
-
     @Column(name = "email")
     private String email;
 
+    @NotNull
     @Column(name = "created")
     private Date created;
 
+    @NotNull
     @Column(name = "last_modified")
     private Date last_modified;
 

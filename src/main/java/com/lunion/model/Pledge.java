@@ -1,6 +1,7 @@
 package com.lunion.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -20,15 +21,19 @@ public class Pledge implements Serializable {
     @GeneratedValue
     private Integer id;
 
+    @NotNull
     @Column(name = "loan_id")
     private Integer loan_id;
 
+    @NotNull
     @Column(name = "total")
     private BigDecimal total;
 
+    @NotNull
     @Column(name = "created")
     private Date created;
 
+    @NotNull
     @Column(name = "last_modified")
     private Date last_modified;
 
