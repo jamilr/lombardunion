@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
  * Created by jr on 8/7/2014.
  */
 
-@Repository
+@Repository("BaseDAO")
 public class BaseDAOImpl implements BaseDAO {
+
+
+
 }

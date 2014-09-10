@@ -3,22 +3,22 @@ package com.lunion.model;
 import javax.persistence.*;
 
 /**
- * Created by jr on 8/6/2014.
+ * Created by jr on 8/18/2014.
  */
+
 @Entity
-@Table(name = "ReasonType")
-public class ReasonType extends AbstractEntity {
+@Table(name = "CompanyCategory")
+public class CompanyCategory extends AbstractEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "name")
     private String name;
 
-    public ReasonType(){
-
+    public CompanyCategory() {
     }
 
     public String getName() {

@@ -3,21 +3,18 @@ package com.lunion.model;
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by jr on 8/6/2014.
  */
+
 @Entity
 @Table(name = "Address")
-public class Address implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Address extends AbstractEntity {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotNull
@@ -43,24 +40,8 @@ public class Address implements Serializable {
     @Column(name = "country")
     private String country;
 
-    @NotNull
-    @Column(name = "created")
-    private Date created;
-
-    @NotNull
-    @Column(name = "last_modified")
-    private Date last_modified;
-
     public Address() {
 
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getAddressLine1() {
@@ -111,19 +92,11 @@ public class Address implements Serializable {
         this.country = country;
     }
 
-    public Date getCreated() {
-        return created;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getLast_modified() {
-        return last_modified;
-    }
-
-    public void setLast_modified(Date last_modified) {
-        this.last_modified = last_modified;
+    public void setId(Integer address_id) {
+        this.id = address_id;
     }
 }

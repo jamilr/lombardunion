@@ -1,10 +1,13 @@
 package com.lunion.model;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by jr on 8/6/2014.
@@ -12,41 +15,27 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Pledge")
-public class Pledge implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Pledge extends AbstractEntity {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue
-    private Integer id;
-
-    @NotNull
-    @Column(name = "loan_id")
+    @Column(name="loan_id", unique=true, nullable=false)
+    @GeneratedValue(generator="gen")
+    @GenericGenerator(name="gen", strategy="foreign", parameters=@Parameter( name="property", value="loan"))
     private Integer loan_id;
 
     @NotNull
     @Column(name = "total")
     private BigDecimal total;
 
-    @NotNull
-    @Column(name = "created")
-    private Date created;
+    @OneToOne(fetch = FetchType.EAGER)
+    @PrimaryKeyJoinColumn
+    private Loan loan;
 
-    @NotNull
-    @Column(name = "last_modified")
-    private Date last_modified;
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "pledge")
+    private Set<PledgeItem> pledgeItemSet = new HashSet<PledgeItem>(0);
 
     public Pledge(){
 
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public BigDecimal getTotal() {
@@ -65,19 +54,20 @@ public class Pledge implements Serializable {
         this.loan_id = loan_id;
     }
 
-    public Date getCreated() {
-        return created;
+    public Loan getLoan() {
+        return loan;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setLoan(Loan loan) {
+        this.loan = loan;
     }
 
-    public Date getLast_modified() {
-        return last_modified;
+    public Set<PledgeItem> getPledgeItemSet() {
+        return pledgeItemSet;
     }
 
-    public void setLast_modified(Date last_modified) {
-        this.last_modified = last_modified;
+    public void setPledgeItemSet(Set<PledgeItem> pledgeItemSet) {
+        this.pledgeItemSet = pledgeItemSet;
     }
+
 }

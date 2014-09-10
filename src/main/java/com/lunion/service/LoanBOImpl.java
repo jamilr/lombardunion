@@ -1,6 +1,4 @@
-package com.lunion.service.impl;
-
-import com.lunion.service.LoanBO;
+package com.lunion.service;
 
 /**
  * Created by jr on 8/7/2014.

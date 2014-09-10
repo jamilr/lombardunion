@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository("PersonDAO")
-public class PersonDAOImpl implements PersonDAO {
-
+public class PersonDAOImpl extends BaseDAOImpl
+        implements PersonDAO {
 
 }

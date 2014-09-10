@@ -3,27 +3,26 @@ package com.lunion.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by jr on 8/6/2014.
  */
 
 @Entity
-@Table(name = "Debtor")
-public class Person implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+@Table(name = "Person")
+public class Person extends AbstractEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    @GeneratedValue
     private Integer id;
 
     @NotNull
-    @Column(name = "code")
-    private String  code;
+    @Column(name = "pucode", nullable = false, unique = false)
+    private String pucode;
 
     @NotNull
     @Column(name = "first_name")
@@ -39,40 +38,27 @@ public class Person implements Serializable {
     @Column(name = "date_of_birth")
     private Date    dateOfBirth;
 
-    @NotNull
-    @Column(name = "person_identity_id")
-    private Integer person_identity_id;
+    @Column(name = "img_path")
+    private String img_path;
 
-    @Lob
-    @Column(name = "img")
-    private byte[] img;
+    @OneToOne(mappedBy="person", fetch = FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+    private ContactInfo contactInfo;
 
-    @NotNull
-    @Column(name = "created")
-    private Date created;
+    @OneToOne(mappedBy="person", fetch = FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+    private EmploymentInfo employmentInfo;
 
-    @NotNull
-    @Column(name = "last_modified")
-    private Date last_modified;
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<Loan> loanSet = new HashSet<Loan>(0);
 
     public Person() {
-
     }
 
-    public Integer getId() {
-        return id;
+    public String getPucode() {
+        return pucode;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public void setPucode(String pucode) {
+        this.pucode = pucode;
     }
 
     public String getFirstName() {
@@ -99,35 +85,43 @@ public class Person implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getPerson_identity_id() {
-        return person_identity_id;
+    public String getImg_path() {
+        return img_path;
     }
 
-    public void setPerson_identity_id(Integer person_identity_id) {
-        this.person_identity_id = person_identity_id;
+    public void setImg_path(String img_path) {
+        this.img_path = img_path;
     }
 
-    public byte[] getImg() {
-        return img;
+    public ContactInfo getContactInfo() {
+        return contactInfo;
     }
 
-    public void setImg(byte[] img) {
-        this.img = img;
+    public void setContactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
     }
 
-    public Date getCreated() {
-        return created;
+    public EmploymentInfo getEmploymentInfo() {
+        return employmentInfo;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setEmploymentInfo(EmploymentInfo employmentInfo) {
+        this.employmentInfo = employmentInfo;
     }
 
-    public Date getLast_modified() {
-        return last_modified;
+    public Set<Loan> getLoanSet() {
+        return loanSet;
     }
 
-    public void setLast_modified(Date last_modified) {
-        this.last_modified = last_modified;
+    public void setLoanSet(Set<Loan> loanSet) {
+        this.loanSet = loanSet;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

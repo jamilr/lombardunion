@@ -2,9 +2,7 @@ package com.lunion.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * Created by jr on 8/6/2014.
@@ -12,49 +10,35 @@ import java.util.Date;
 
 @Entity
 @Table(name = "PledgeItem")
-public class PledgeItem implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class PledgeItem extends AbstractEntity {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, unique = true)
     private Integer id;
 
     @NotNull
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, unique = false)
     private String name;
 
     @NotNull
-    @Column(name = "quantity")
+    @Column(name = "quantity", nullable = false, unique = false)
     private Integer quantity;
 
     @NotNull
-    @Column(name = "price")
+    @Column(name = "price", nullable = false, unique = false)
     private BigDecimal price;
 
     @NotNull
-    @Column(name = "total")
+    @Column(name = "total", nullable = false, unique = false)
     private BigDecimal total;
 
-    @NotNull
-    @Column(name = "created")
-    private Date created;
-
-    @NotNull
-    @Column(name = "last_modified")
-    private Date last_modified;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "loan_id", referencedColumnName = "loan_id")
+    private Pledge pledge;
 
     public PledgeItem(){
 
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -89,19 +73,19 @@ public class PledgeItem implements Serializable {
         this.total = total;
     }
 
-    public Date getCreated() {
-        return created;
+    public Pledge getPledge() {
+        return pledge;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setPledge(Pledge pledge) {
+        this.pledge = pledge;
     }
 
-    public Date getLast_modified() {
-        return last_modified;
+    public Integer getId() {
+        return id;
     }
 
-    public void setLast_modified(Date last_modified) {
-        this.last_modified = last_modified;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

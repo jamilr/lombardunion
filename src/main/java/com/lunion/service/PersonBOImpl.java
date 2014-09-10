@@ -1,6 +1,5 @@
-package com.lunion.service.impl;
+package com.lunion.service;
 
-import com.lunion.service.PersonBO;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,30 +1,22 @@
 package com.lunion.model;
 
 import com.sun.istack.internal.NotNull;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by jr on 8/6/2014.
  */
 @Entity
 @Table(name = "ContactInfo")
-public class ContactInfo implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class ContactInfo extends AbstractEntity {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue
-    private Integer id;
-
-    @Column(name = "identity_passport")
-    private Address identity_address;
-
-    @Column(name = "current_passport")
-    private Address current_address;
+    @Column(name="person_id", unique=true, nullable=false)
+    @GeneratedValue(generator="gen")
+    @GenericGenerator(name="gen", strategy="foreign", parameters=@org.hibernate.annotations.Parameter( name="property", value="person"))
+    private Integer person_id;
 
     @NotNull
     @Column(name = "mobile_phone")
@@ -39,24 +31,20 @@ public class ContactInfo implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @NotNull
-    @Column(name = "created")
-    private Date created;
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    private Person person;
 
-    @NotNull
-    @Column(name = "last_modified")
-    private Date last_modified;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "identity_address_id", referencedColumnName = "id", nullable = true)
+    private Address identity_address;
 
-    public ContactInfo(){
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "current_address_id", referencedColumnName = "id", nullable = true)
+    private Address current_address;
 
-    }
+    public ContactInfo() {
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Address getIdentity_address() {
@@ -107,19 +95,19 @@ public class ContactInfo implements Serializable {
         this.email = email;
     }
 
-    public Date getCreated() {
-        return created;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
-    public Date getLast_modified() {
-        return last_modified;
+    public Integer getPerson_id() {
+        return person_id;
     }
 
-    public void setLast_modified(Date last_modified) {
-        this.last_modified = last_modified;
+    public void setPerson_id(Integer person_id) {
+        this.person_id = person_id;
     }
 }

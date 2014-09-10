@@ -3,11 +3,12 @@ package com.lunion.model;
 import javax.persistence.*;
 
 /**
- * Created by jr on 8/6/2014.
+ * Created by jr on 8/8/2014.
  */
+
 @Entity
-@Table(name = "ReasonType")
-public class ReasonType extends AbstractEntity {
+@Table(name = "TransactionType")
+public class TransactionType extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,7 +18,7 @@ public class ReasonType extends AbstractEntity {
     @Column(name = "name")
     private String name;
 
-    public ReasonType(){
+    public TransactionType(){
 
     }
 

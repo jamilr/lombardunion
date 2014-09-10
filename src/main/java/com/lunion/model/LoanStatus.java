@@ -4,12 +4,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by jr on 8/7/2014.
+ * Created by jr on 9/9/2014.
  */
 
 @Entity
-@Table(name = "UserType")
-public class UserType extends AbstractEntity {
+@Table(name = "LoanStatus")
+public class LoanStatus extends AbstractEntity {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,19 +18,11 @@ public class UserType extends AbstractEntity {
     private Integer id;
 
     @NotNull
-    @Column(name = "type_name")
-    private String type_name;
+    @Column(name = "name", nullable = false, unique = true)
+    private String name;
 
-    public UserType(){
+    public LoanStatus(){
 
-    }
-
-    public String getType_name() {
-        return type_name;
-    }
-
-    public void setType_name(String type_name) {
-        this.type_name = type_name;
     }
 
     public Integer getId() {
@@ -38,5 +31,13 @@ public class UserType extends AbstractEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
